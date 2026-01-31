@@ -1,6 +1,24 @@
 import { args } from './args.js'
 import pkg from '../../package.json' with { type: 'json' }
 
+function todayFlag(): void {
+  console.log(`
+recur today - not implemented
+`)
+}
+
+function submitFlag(): void {
+  console.log(`
+recur submit - not implemented
+`)
+}
+
+function reviseFlag(): void {
+  console.log(`
+recur revise - not implemented
+`)
+}
+
 function printHelp(): void {
   console.log(`
 ${pkg.name} - a cli tool
@@ -23,11 +41,41 @@ function printInvalidOptions(option: string): void {
   console.error(`
 unknown option: ${option}
 usage: ${pkg.name} [-v | --version] [-h | --help]
+usage: ${pkg.name} [-today | --today | today]
+usage: ${pkg.name} [-revise | --revise | revise]
+usage: ${pkg.name} [-submit | --submit | submit]
 `)
 }
 
 export function handleCliOptions(): void {
   if (args.length === 0) return
+
+  if (
+    args.includes('-today') ||
+    args.includes('--today') ||
+    args.includes('today')
+  ) {
+    todayFlag()
+    process.exit(0)
+  }
+
+  if (
+    args.includes('-revise') ||
+    args.includes('--revise') ||
+    args.includes('revise')
+  ) {
+    reviseFlag()
+    process.exit(0)
+  }
+
+  if (
+    args.includes('-submit') ||
+    args.includes('--submit') ||
+    args.includes('submit')
+  ) {
+    submitFlag()
+    process.exit(0)
+  }
 
   if (args.includes('-h') || args.includes('--help') || args.includes('help')) {
     printHelp()

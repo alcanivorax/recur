@@ -1,7 +1,7 @@
 {
   "name": "recur",
   "version": "0.1.0",
-  "description": "",
+  "description": "A lightweight CLI for daily DSA practice with local progress tracking, built to keep you focused on problem-solving.",
   "type": "module",
   "bin": {
     "recur": "./dist/index.js"
@@ -32,7 +32,18 @@
     "url": "git+https://github.com/alcanivorax/recur.git"
   },
   "keywords": [
-    "cli"
+    "dsa",
+    "data-structures",
+    "algorithms",
+    "dsa-practice",
+    "coding-interview",
+    "interview-prep",
+    "competitive-programming",
+    "cli",
+    "developer-tools",
+    "leetcode-alternative",
+    "daily-practice",
+    "programming-cli"
   ],
   "author": "alcanivorax",
   "license": "MIT",
