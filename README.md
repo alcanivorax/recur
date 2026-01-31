@@ -1,6 +1,6 @@
 # recur
 
-Opinionated CLI for <one-line purpose>.
+<!-- Opinionated CLI for <one-line purpose>.
 
 ## Install
 
@@ -17,7 +17,7 @@ recur
 ## Notes
 
 - Defaults are intentional
-- Optimized for my workflow
+- Optimized for my workflow -->
 
 ## License
 
