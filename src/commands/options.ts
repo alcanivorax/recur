@@ -1,11 +1,6 @@
 import { args } from './args.js'
+import { today } from './today.js'
 import pkg from '../../package.json' with { type: 'json' }
-
-function todayFlag(): void {
-  console.log(`
-recur today - not implemented
-`)
-}
 
 function submitFlag(): void {
   console.log(`
@@ -55,7 +50,7 @@ export function handleCliOptions(): void {
     args.includes('--today') ||
     args.includes('today')
   ) {
-    todayFlag()
+    today()
     process.exit(0)
   }
 

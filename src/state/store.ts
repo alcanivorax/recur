@@ -1,6 +1,6 @@
-import os from 'node:os'
-import fs, { readFile, readFileSync } from 'node:fs'
-import path from 'node:path'
+import fs from 'fs'
+import os from 'os'
+import path from 'path'
 
 const dirPath = path.join(os.homedir(), '.recur')
 const statePath = path.join(dirPath, 'state.json')
@@ -30,17 +30,18 @@ export function ensureStateFile(): void {
       current: null,
       revisions: [],
     }
+
     fs.writeFileSync(statePath, JSON.stringify(initialState, null, 2))
   }
 }
 
-export async function readState(): Promise<RecurState> {
+export function readState(): RecurState {
   ensureStateFile()
-  const raw = fs.readFileSync(statePath, 'utf8')
 
+  const raw = fs.readFileSync(statePath, 'utf-8')
   return JSON.parse(raw) as RecurState
 }
 
-export async function writeState(state: RecurState): Promise<void> {
+export function writeState(state: RecurState): void {
   fs.writeFileSync(statePath, JSON.stringify(state, null, 2))
 }

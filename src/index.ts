@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
-import pkg from '../package.json' with { type: 'json' }
-import { handleCliOptions } from './cli/options.js'
+import { handleCliOptions } from './commands/options.js'
+import { readState, writeState } from './state/store.js'
 
 export async function run() {
   handleCliOptions()
-  return `${pkg.name} is running...`
+  const state = readState()
+  state.day += 1
+  writeState(state)
+  return 'recur is running...'
 }
 
-console.log(await run())
+await run()
