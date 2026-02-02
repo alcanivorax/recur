@@ -1,7 +1,5 @@
 import readline from 'readline'
 import { readState, writeState } from '../state/store.js'
-import { stdout } from 'process'
-import { stat, write } from 'fs'
 
 export async function ask(question: string): Promise<string> {
   const rl = readline.createInterface({
@@ -26,7 +24,7 @@ export async function submit(): Promise<void> {
   }
 
   const attempted = await ask('Attempted the task? (y/N): ')
-  const timeSpent = await ask('Time spent (minutes): ')
+  await ask('Time spent (minutes): ') // timeSpent
   const confidence = await ask('Confidence (1-5): ')
   const usedHint = await ask('Used hint? (y/N): ')
 
