@@ -1,5 +1,7 @@
 import readline from 'readline'
 import { readState, writeState } from '../state/store.js'
+import { daysBetween } from '../state/date.js'
+import { stat } from 'fs'
 
 export async function ask(question: string): Promise<string> {
   const rl = readline.createInterface({
@@ -29,9 +31,24 @@ export async function submit(): Promise<void> {
   const usedHint = await ask('Used hint? (y/N): ')
 
   // ---- streak logic ----
-  state.streak += attempted === 'y' ? 1 : 0
+  const today = new Date().toISOString().slice(0, 10)
+
+  if (state.lastActive) {
+    const gap = daysBetween(state.lastActive, today)
+    if (gap > 1) {
+      state.streak = 0
+    }
+  }
+
+  if (attempted === 'y') {
+    state.streak += 1
+  }
+
+  state.lastActive = today
   state.day += 1
-  state.lastActive = new Date().toISOString().slice(0, 10)
+  // state.streak += attempted === 'y' ? 1 : 0
+  // state.day += 1
+  // state.lastActive = new Date().toISOString().slice(0, 10)
 
   // ---- difficulty logic ----
   const conf = Number(confidence)
