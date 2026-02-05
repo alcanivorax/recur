@@ -1,18 +1,8 @@
 import { args } from './args.js'
 import { today } from './today.js'
+import { submit } from './submit.js'
+import { revise } from './revise.js'
 import pkg from '../../package.json' with { type: 'json' }
-
-function submitFlag(): void {
-  console.log(`
-recur submit - not implemented
-`)
-}
-
-function reviseFlag(): void {
-  console.log(`
-recur revise - not implemented
-`)
-}
 
 function printHelp(): void {
   console.log(`
@@ -42,7 +32,7 @@ usage: ${pkg.name} [-submit | --submit | submit]
 `)
 }
 
-export function handleCliOptions(): void {
+export async function handleCliOptions(): Promise<void> {
   if (args.length === 0) return
 
   if (
@@ -59,7 +49,7 @@ export function handleCliOptions(): void {
     args.includes('--revise') ||
     args.includes('revise')
   ) {
-    reviseFlag()
+    await revise()
     process.exit(0)
   }
 
@@ -68,7 +58,7 @@ export function handleCliOptions(): void {
     args.includes('--submit') ||
     args.includes('submit')
   ) {
-    submitFlag()
+    await submit()
     process.exit(0)
   }
 

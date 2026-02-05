@@ -1,6 +1,7 @@
 import { readState, writeState } from '../state/store.js'
+import { RecurState } from '../types.js'
 
-function hasRevisionDue(state: any): boolean {
+function hasRevisionDue(state: RecurState): boolean {
   return state.revisions && state.revisions.length > 0
 }
 

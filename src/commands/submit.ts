@@ -1,12 +1,12 @@
 import readline from 'readline'
 import { readState, writeState } from '../state/store.js'
 import { daysBetween } from '../state/date.js'
-import { stat } from 'fs'
 
 export async function ask(question: string): Promise<string> {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
+    terminal: true,
   })
 
   return new Promise((resolve) => {
