@@ -82,7 +82,7 @@ function getCurrentDate(): string {
   // Extract Day, Month and Year
   let day: string | number = today.getDate()
   let month: string | number = today.getMonth() + 1
-  let year = today.getFullYear()
+  const year = today.getFullYear()
 
   // Add leading zero to day and month if needed
   day = day < 10 ? '0' + day : day
