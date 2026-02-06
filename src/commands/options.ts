@@ -6,14 +6,24 @@ import pkg from '../../package.json' with { type: 'json' }
 
 function printHelp(): void {
   console.log(`
-${pkg.name} - a cli tool
+${pkg.name} — Daily DSA Practice CLI
 
 Usage:
-  ${pkg.name} [options]
+  ${pkg.name} <command>
+
+Commands:
+  today      Get today’s DSA problem
+  submit     Mark today’s problem as completed
+  revise     Revisit previously solved problems
 
 Options:
-  -h, --help, help        Show help
-  -v, --version, version  Show version
+  -h, --help       Show help
+  -v, --version    Show version
+
+Examples:
+  ${pkg.name} today
+  ${pkg.name} submit
+  ${pkg.name} revise
 `)
 }
 
@@ -22,13 +32,25 @@ function printVersion(): void {
 ${pkg.name} version ${pkg.version}
 `)
 }
+
 function printInvalidOptions(option: string): void {
   console.error(`
-unknown option: ${option}
-usage: ${pkg.name} [-v | --version] [-h | --help]
-usage: ${pkg.name} [-today | --today | today]
-usage: ${pkg.name} [-revise | --revise | revise]
-usage: ${pkg.name} [-submit | --submit | submit]
+${pkg.name}: unknown option "${option}"
+
+Usage:
+  ${pkg.name} <command>
+
+Commands:
+  today       Get today’s DSA problem
+  submit      Mark today’s problem as completed
+  revise      Revisit previously solved problems
+
+Options:
+  -h, --help        Show help
+  -v, --version     Show version
+
+Tip:
+  Run "${pkg.name} --help" to see all available commands.
 `)
 }
 

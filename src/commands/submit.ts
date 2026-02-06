@@ -2,6 +2,8 @@ import readline from 'readline'
 import { readState, writeState } from '../state/store.js'
 import { daysBetween } from '../state/date.js'
 
+export const REVISION_INTERNALS = [3, 7, 21, 45]
+
 export async function ask(question: string): Promise<string> {
   const rl = readline.createInterface({
     input: process.stdin,
@@ -59,7 +61,10 @@ export async function submit(): Promise<void> {
   }
 
   // ---- revision stub ----
-  state.revisions.push({ topic: state.current.topic, dueInDays: 3 })
+  state.revisions.push({
+    topic: state.current.topic,
+    dueInDays: getCurrentDate,
+  })
 
   // ---- clear current task ----
   state.current = null
@@ -69,4 +74,21 @@ export async function submit(): Promise<void> {
   console.log('\nSubmitted.')
   console.log(`Streak : $ ${state.streak}`)
   console.log('Next   : recur today')
+}
+
+function getCurrentDate(): string {
+  const today = new Date()
+
+  // Extract Day, Month and Year
+  let day: string | number = today.getDate()
+  let month: string | number = today.getMonth() + 1
+  let year = today.getFullYear()
+
+  // Add leading zero to day and month if needed
+  day = day < 10 ? '0' + day : day
+  month = month < 10 ? '0' + month : month
+
+  const formattedDate = `${day}/${month}/${year}`
+
+  return formattedDate
 }
